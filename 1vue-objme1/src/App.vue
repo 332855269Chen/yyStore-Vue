@@ -2,9 +2,10 @@
   <div id="app">
     <Header v-show="$store.state.head"></Header>
 
-   <transition
-		enter-active-class = "animated bounceInRight"
-   >  
+   <!-- <transition 
+		enter-active-class = "animated slideInRight"
+    
+   >   -->
    <!-- //<keep-alive>的作用就是 记录缓存 节省性能  同时也会造成一些问题,因为之前的页面从来都没有被卸载过-->
       <keep-alive
       :exclude="['user']"
@@ -14,7 +15,7 @@
         
       </keep-alive>
 
-   </transition>
+   <!-- </transition> -->
 
     <Footer v-show="$store.state.foot"></Footer>
      

@@ -38,6 +38,19 @@ if(local){
   store.commit('CHECK_USER',JSON.parse(local))
 }
 
+
+//安装引入所有 vant ui
+// import Vant from 'vant';
+// import 'vant/lib/index.css';
+// Vue.use(Vant);
+
+//按需引入，全局注册使用
+import {Swipe, SwipeItem,GoodsAction,GoodsActionIcon,GoodsActionButton,Card,Stepper,SwipeCell,Cell, CellGroup,Button,
+  SubmitBar,Checkbox, CheckboxGroup,Lazyload,NoticeBar} from 'vant';
+
+Vue.use(Swipe).use(SwipeItem) .use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton).use(Card).use(Stepper).use(Card).use(SwipeCell)
+.use(Cell).use(CellGroup).use(Button).use(SubmitBar).use(Checkbox).use(CheckboxGroup).use(Lazyload).use(NoticeBar)
+
 new Vue({ 
   data:{
     // head:true,
@@ -45,7 +58,7 @@ new Vue({
     // homeItem:
     
   },
-  render: h => h(App),
+  render: h => h(App), 
   router,
   store
 }).$mount('#app')

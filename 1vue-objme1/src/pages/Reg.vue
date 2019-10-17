@@ -64,6 +64,9 @@ export default {
         }
       )
     }
+  },
+  mounted(){
+     console.log("这个reg页,是8001来的")      
   }
 
 }

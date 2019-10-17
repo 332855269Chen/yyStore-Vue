@@ -24,61 +24,73 @@
 <section>
     <div class="list">
       
-        <ul>
-
-            <li class="ui-border-b"
+        <ul> 
+          <li class="ui-border-b"
              v-for="item of buycar"
              :key="item._id"
             >
-              <a href="javascript:;">
-                <div class="ui-p-box clearfix">
+              
+          
+              <!-- ----------------------------------------------- -->
+          <!-- <div  style="position:relative">
+              <van-card
+                  :num="item.number"
+                  :price="item.price"
+                  :desc="item.des"  
+                  :title="item.title"
+                  :thumb="item.url"
+        
+                  origin-price="8888"
 
-                    <div class="fl ui-p-choice">
-                         <!-- 复选框 -->
-                        <!-- <i class="ui-icon-success ui-icon-cu danxuan" style="display:flex;"></i> -->
-                    </div>
-                    
-                    <div class="ui-p-product fl" >
-               
-                            <img class="info-img" :src="item.url" alt=""> 
-                       <div class="img-price">
-                             <p>{{item.title}}</p>
-                            <div class="ui-p-click ">
-                            <div class="ui-c1" @click="changeItem({_id:item._id,num:-1})">-</div>
-                            <div class="ui-c2">{{item.number}}</div>
-                            <div class="ui-c3" @click="changeItem({_id:item._id,num:1})">+</div>
-                    
-                           <div class="ui-c4" style="font:18px/50px '';color:red;margin-left:-32px;">￥{{item.price * item.number}} </div>   
-                         </div>
-                         
-                        </div>
-                   
-                    </div>
-                    
-                    <div class="info" style='font:14px/18px "";'>
-                        <h3>{{item.title}}</h3>
-                        <span class="ui-t" style="">{{item.des}}</span>
-                       
-                    </div>
+            
+                > 
+                </van-card>
+      <van-stepper v-model="item.number" style="position:absolute;right:12px;bottom:6px;"   @plus='changeItem({_id:item._id,num:1})'/>
+                  </div>          //单个商品 不同数量的 总价 {{item.price * item.number}}   --> 
+                  
 
-                    <div class="fr ui-p-delete">
-                      <!-- 删除箭 -->
-                        <i class="ui-icon-delete"  @click="removeItem({_id:item._id})" ></i>
-                    </div>
-                </div>
-                </a>
+
+         <van-swipe-cell>
+
+              <van-cell :border="false"  value="" style="border:0;padding:0;background-color:none;"> 
+              
+                <div  style="position:relative">
+                           <!-- 子复选框 -->
+                   <!-- <van-checkbox  class="check" checked-color='#fe0604' v-model="item.satus" @change="itemChange()"></van-checkbox> -->
+
+                      <van-card
+                          :num="item.number"
+                          :price="item.price"
+                          :desc="item.des"  
+                          :title="item.title"
+                          :thumb="item.url"
+                          origin-price="8888"   
+                        > 
+                        
+                        </van-card>
+                        
+              <van-stepper v-model="item.number" style="position:absolute;right:12px;bottom:6px;"   @plus='changeItem({_id:item._id,num:1})' @minus="changeItem({_id:item._id,num:-1})"/>
+                  </div>
+             
+                  </van-cell>
+
+              <template slot="right">
+                <van-button square type="danger" text="删除"  style="border-bottom:0;height:120px;line-height:100px;" @click="removeItem({_id:item._id})"/>
+                <!-- <van-button square type="primary" text="收藏"/> -->
+              </template>
+              
+         </van-swipe-cell>
             </li>
-
-
         </ul>
- 
 
-         <div class="footer">
-         <div class="footer-l" style='font:18px/60px "";'>
-          总金额:{{cptall}} 元
-         </div>
-         <div class="footer-r" style="font:30px/2 '';">立即购买</div>
-    </div>   
+         <div class="footer"> 
+             <van-submit-bar  :price="cptall*100 "  button-text="提交订单"> 
+
+                  <!-- <van-checkbox  checked-color='#fe0604' @change="change()" v-model="allCheck">全选</van-checkbox> -->
+
+             </van-submit-bar>
+         </div>   
+
     </div>
 
 </section>
@@ -94,8 +106,16 @@
 
 import {mapGetters,mapActions} from 'vuex'
 export default {
+      data(){
+        return {
+         value:0,
+        //  allCheck: false,
+        //  satus:false, 
+         
+        }
+      },
     computed:{
-   ...mapGetters(['buycar','cptall']),
+   ...mapGetters(['buycar','cptall','cptnum']),
 
       // cptall(){
       //       var  all= 0;
@@ -132,22 +152,15 @@ export default {
     goback(){
       this.$router.go(-1)
     },
-
-    ...mapActions([
-    'changeItem','clearBuycar','removeItem'
-    ])
+    ...mapActions(['changeItem','clearBuycar','removeItem' ]),
 
   },
 
-  activated(){
-    setTimeout(() => {
-      //  console.log('shabi',this.$store.state.buycar)
-    }, 0);
+  // activated(){
+  //     console.log('car',this.$store.state.buycar[0].check)
+  //     // console.log('cptcheck',cptcheck)
+  // }
 
-    // console.log(this.$store.state.buycar)
-   
-    
-  }
 }
 </script>
 
@@ -176,12 +189,14 @@ export default {
   .ui-c2{color:rgb(241, 105, 26);}
   
   .ui-c4{margin-top:20px;}
-  /* ========================================================= */
 
+  .check{position:absolute;top:5px;right:5px;z-index:5}
+  /* ========================================================= */
+/* 
    .footer{display:flex;position:fixed;bottom:0;font:30px/2 '';justify-content:space-between;width:100%;color:#fff}
 
     .footer .footer-l{height:60px;width:50%;background:#fff;color:grey;font:18px/60px "";}
-    .footer .footer-r{height:60px;width:50%;background:rgb(247, 64, 31)}
+    .footer .footer-r{height:60px;width:50%;background:rgb(247, 64, 31)} */
 
     /* .quanxuan:hover{color:rgb(241, 105, 26);} */
 

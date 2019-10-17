@@ -87,13 +87,15 @@ export default {
     let find=false;
 
     arr.forEach((item,index)=>{
-      if(item._id==payload._id){
+      if(item._id==payload._id){ 
         item.number++;//数量递增
+
         find=true;
       }
     });
     if(!find) {
       payload.number=1;//数量
+      payload.check = true
       arr.push(payload);
     }
     // commit(types.ADD_ITEM,[...state.buycar])

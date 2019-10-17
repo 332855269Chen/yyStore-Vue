@@ -30,7 +30,7 @@ export default {
     bottom:0;
     left:0;
     width:100%;
-    padding:.2rem 0;
+    padding:.1333333rem 0;
     
 }
 
@@ -38,7 +38,7 @@ export default {
     float:left;
     width:25%;
     text-align:center;
-    padding-bottom:0.133333rem;
+    /* padding-bottom:0.133333rem; */
     color:#333;
 }
 

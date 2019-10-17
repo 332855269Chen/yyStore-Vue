@@ -3,6 +3,8 @@
       <!-- 轮播图 -->
     <silder></silder>
 
+
+
     <!-- --------------------------bg---------------------------------------------------------------------------- -->
  
     <a href="#" class="bj"><img src="/images/pd/bj.png" alt=""></a>
@@ -15,6 +17,8 @@
      
   
     <list :list-data="$store.state.home" :data-name="'home'"></list>
+
+ 
   <!-- ------------------------------------------------------------------------------------------------------ -->
   </div>
 </template>
@@ -69,7 +73,8 @@ export default {
           // this.listData = Object.values(this.$store.state)[2]
           // this.column =  Object.values(this.$store.state)[2]
      
-          // console.log(2,'mounted', this.$store.state, typeof(this.$store.state.home))       
+          // console.log(2,'mounted', this.$store.state, typeof(this.$store.state.home))
+             
         },
  
 

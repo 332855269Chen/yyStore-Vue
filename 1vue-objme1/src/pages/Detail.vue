@@ -1,48 +1,91 @@
 <template>
   <div class="detail">
-    <div class="nav" >
-      <ul>
-        <li class="l-btn" @click="goback"> &lt;</li>
+    <div class="nav">
+      <ul >
+        <li class="l-btn" @click="goback" > &lt;</li>
       </ul>
     </div>
  
-    <div class="content" v-if="$store.state.detail._id">                                  <!-- data.detail.auth_icon -->
-      <div class="header clear"><h2>
-        <!-- <img width="40" :src="'http://121.196.198.11:3000'  +  '/upload/noimage.png' " alt=""/> -->
-        </h2><p></p></div>
-      <div class="cont">
-        <h3>{{$store.state.detail.title}}/{{9|fillzero}}</h3> 
-        <!-- <div class="time"><p>{{data.time|date}}<span><img src="" alt=""/></span></p></div> -->
-        <div class="text-box" v-html="$store.state.detail.content"></div>
-      </div>
-    </div>
-     <img class="info-img" :src="$store.state.detail.url" alt="">
+    
+
+     <!-- <img class="info-img" :src="$store.state.detail.url" alt=""> -->
+            
+    <van-swipe :autoplay='3000'  class="clearfix"  @change="onChange">
+        <van-swipe-item> <img :src="$store.state.detail.url" alt="" class="info-img" /></van-swipe-item>
+        <van-swipe-item> <img :src="$store.state.detail.url"  alt="" class="info-img" /></van-swipe-item>
+        <van-swipe-item> <img :src="$store.state.detail.url" alt="" class="info-img" /></van-swipe-item>
+        <van-swipe-item> <img :src="$store.state.detail.url"  alt="" class="info-img" /></van-swipe-item>     
+    </van-swipe>
+
+  <div class="custom-indicator" slot="indicator" style="background:gray;color:white;font:14px/2 '';">
+    {{ current + 1 }}/4
+  </div>
+
     <div  class="list">
                 
                         <div class="info" style='font:16px/18px "";'>
+
+                        <p class="around-other-price price"><span>￥</span> <b>{{$store.state.detail.price}}</b></p>   
                             <h3>{{$store.state.detail.title}}</h3>
                             <span>{{$store.state.detail.content}}</span> 
-                            <p class="around-other-price price"><span>￥</span> <b>{{$store.state.detail.price}}</b></p>   
-         </div> 
+                     
+                        </div> 
         </div>
 
+
+
+      <van-notice-bar text="好消息好消息！合约购机3688起,Apple/苹果 iPhone 8 Plus 国行苹果8 国行苹果8 国行苹果8 国行苹果8 国行苹果8" left-icon="volume-o"/>
+      
+
+      <img src='../assets/img/icon/detail-0.jpg' alt="" style="width:100%">
+      <img src='../assets/img/icon/detail-1.jpg' alt="" style="width:100%">
+      <img src='../assets/img/icon/detail-2.jpg' alt="" style="width:100%">
+      <img src='../assets/img/icon/detail-3.jpg' alt="" style="width:100%">
+        
+   
+<!-- <img v-for="img in imageList" v-lazy="img" style="width:100%"> -->
+ 
 <!-- ---------------------------------------底部--------------------------------------------------------- -->
      <div class="footer" style='font:30px/2 "";'>
+<!-- 
          <div class="footer-l" @click="addItem($store.state.detail)">加入购物车</div>
-         <div class="footer-r">立即购买</div>
+         <div class="footer-r">立即购买</div> -->
+
+         <van-goods-action>
+          <van-goods-action-icon icon="chat-o" text="客服"  />
+          <router-link tag="div" to="/shopcart"> <van-goods-action-icon icon="cart-o" text="购物车"   :info="cptnum" /> </router-link>
+          <van-goods-action-button type="warning" text="加入购物车" class="footer-l" @click="addItem($store.state.detail)" />
+          <van-goods-action-button type="danger" text="立即购买"  />
+         </van-goods-action>
+
     </div>   
+
+
 
   </div>
 </template>
 <script>
 
-  import {mapState,mapActions} from 'vuex';
+  import {mapState,mapActions,mapGetters} from 'vuex';
   import  {UPDATE_HOME}  from '../store/types'
+
+
+
 
   export default {
     data(){
       return {
         data:{},
+        current:0,
+        imageList: [
+        'https://img.yzcdn.cn/vant/apple-1.jpg',
+        'https://img.yzcdn.cn/vant/apple-2.jpg',
+        // '../assets/img/icon/detail-0.jpg',
+        // '../assets/img/icon/detail-1.jpg',
+        // '../assets/img/icon/detail-2.jpg',
+        // '../assets/img/icon/detail-3.jpg'
+        
+      ]
 
       }
     },
@@ -51,9 +94,14 @@
         this.$router.go(-1)
       },
       ...mapActions(['addItem']), 
+       onChange(index) {
+      this.current = index;
+    }
 
     },  
-    computed:mapState(['home']),
+    computed:{...mapState(['home']),
+       ...mapGetters(['cptnum']),
+    },
  
     props:["id",'dataName'],
     activated(){
@@ -66,7 +114,6 @@
 
     this.$store.state.head = false
     this.$store.state.foot = false
-   
 
       // axios({
       //   url:`http://localhost:3000/api/${dataName}/${id}`
@@ -81,11 +128,10 @@
    
     let id = this.id;
     let dataName = this.dataName;
-       console.log(id,dataName)
+
+    // console.log('detail',this.$store.state.detail)
 
     this.$store.dispatch('UPDATE_DETAIL',{id,dataName})
-
-    
 
 
     }
@@ -118,7 +164,7 @@
           /* ---------------------------------------------------------------------------------------------------- */
 
 
-  .list{padding-bottom:80px;}
+  .list{padding-bottom:5px;}
   .list{display:flex;cursor:pointer;margin:20px 0;justify-content:center ;}
   .list img.info-img{display:block; width:106px;height:107px;}
   .list .info{width:307px;height:106px;font:12px/18px "";text-align: left;font-weight: 400;}
@@ -127,14 +173,17 @@
     display: block;
     padding-top:5px;
   }
-  .info > h3 {color:rgb(103, 112, 117);font-size:14px;}
-  .info > p {color:rgb(241, 105, 26);font-size:20px;font-weight:200;padding-top:10px;}
+  .info h3{color:rgb(103, 112, 117);font-size:14px;}
+  .info p{color:rgb(241, 105, 26);font-size:20px;font-weight:200;padding-top:10px;}
+
+  .van-swipe{ position: relative;}
+  .custom-indicator{position:absolute;right:3px;top:12px;z-index:133;border-radius:10px;width:50px;opacity:0.7 ;}
 
   /* --------底部--------- */
 
     .footer{display:flex;position:fixed;bottom:0;font:30px/2 '';justify-content:space-between;width:100%;color:#fff}
 
-    .footer .footer-l{height:60px;width:50%;background:rgb(255, 166, 0);}
-    .footer .footer-r{height:60px;width:50%;background:rgb(247, 64, 31)}
+    /* .footer .footer-l{height:60px;width:50%;background:rgb(255, 166, 0);} */
+    /* .footer .footer-r{height:60px;width:50%;background:rgb(247, 64, 31)} */
 
   </style>
