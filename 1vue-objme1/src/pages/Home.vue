@@ -17,6 +17,7 @@
      
   
     <list :list-data="$store.state.home" :data-name="'home'"></list>
+    <list2 :list-data="$store.state.home" :data-name="'home'"></list2>
 
  
   <!-- ------------------------------------------------------------------------------------------------------ -->
@@ -26,6 +27,7 @@
 <script>
 import silder from '../components/silder'  //引入轮播图组件
 import list from '../components/list'  //引入轮播图组件
+import list2 from '../components/list2'   //引入轮播图组件
 
 import {mapActions,mapState} from 'vuex'
 export default {
@@ -36,7 +38,7 @@ export default {
       }
     },  
     components:{
-        silder,list
+        silder,list,list2
     },
 
 

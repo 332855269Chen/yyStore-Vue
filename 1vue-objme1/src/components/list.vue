@@ -3,7 +3,7 @@
 
        
          <ul>
-            <li
+            <li 
             v-for="(item) of listData"
             :key="item._id"
             >

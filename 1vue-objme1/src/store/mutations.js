@@ -1,6 +1,6 @@
 import * as types from './types'
 let mutations = {
-    // [types.VIEW_LOADING]:(state,payload)=>state.loading=payload,
+    [types.VIEW_LOADING]:(state,payload)=>state.bLoading=payload,
 
 
 

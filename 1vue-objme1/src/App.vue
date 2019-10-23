@@ -1,21 +1,24 @@
 <template>
   <div id="app">
+      <van-loading   v-show="bLoading" size="36px" text-size="18px">客官请稍等... </van-loading>
+    
     <Header v-show="$store.state.head"></Header>
 
-   <!-- <transition 
-		enter-active-class = "animated slideInRight"
+   <transition 
+		enter-active-class = "animated fadeIn"
+		
     
-   >   -->
+   >  
    <!-- //<keep-alive>的作用就是 记录缓存 节省性能  同时也会造成一些问题,因为之前的页面从来都没有被卸载过-->
       <keep-alive
-      :exclude="['user']"
+      :exclude="['user','home','search']"
       > 
 
         <router-view></router-view>
         
       </keep-alive>
 
-   <!-- </transition> -->
+   </transition>
 
     <Footer v-show="$store.state.foot"></Footer>
      
@@ -26,7 +29,9 @@
 
 import Header from  './components/Header'
 import Footer from  './components/Footer'
- 
+ import {mapState, mapMutations} from 'vuex';
+
+
 export default {
   name: 'app',
   components: {
@@ -58,7 +63,10 @@ export default {
       immediate:true,
       deep:true
     }
-  }
+  },
+  computed:mapState([
+    'bLoading'
+  ])
 }
 </script>
 

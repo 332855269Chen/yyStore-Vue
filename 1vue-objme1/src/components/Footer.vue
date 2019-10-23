@@ -4,8 +4,12 @@
     <ul class="clearfix">
  
  <router-link tag="li" to="/home">  <a href="javascript:;" class="on"><i class="ui-icon-home"></i><p>首页</p></a></router-link>
- <router-link tag="li" to="/search"> <a href="javascript:;"><i class="ui-icon-search" style="font-size:42px;"></i><p>搜索</p></a></router-link>
- <router-link tag="li" to="/shopcart">  <a href="javascript:;"><i class="ui-icon-cart"></i><p>购物车</p></a></router-link>
+ <router-link tag="li" to="/search">
+  
+            <a href="javascript:;"><i class="ui-icon-search" style="font-size:42px;"></i><p>搜索</p></a>
+
+  </router-link>
+ <router-link tag="li" to="/shopcart"> <a href="javascript:;"><i class="ui-icon-cart"></i><p>购物车</p></a></router-link>
  <router-link tag="li" to="/user"><a href="javascript:;"><i class="ui-icon-personal"></i><p>我的</p></a></router-link>
       
     </ul>

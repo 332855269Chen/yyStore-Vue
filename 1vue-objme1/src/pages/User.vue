@@ -4,7 +4,7 @@
       <div class="top">
           <img class="bg" src="/images/pd/user.jpg" alt="">
           
-          <img class="icon" src="../assets/img/icon/noimage.png" alt="">
+          <img class="icon" src="../assets/img/icon/noimage1.png" alt="" style="width:60px;">
             <h5 style="font:16px/2 '';">
               <a href="javascript:;">{{$store.state.user.data.username}}</a> |
               <a href="javascript:;"  @click="logout">注销</a>
@@ -13,13 +13,13 @@
       </div>
       <!-- --------------------------------------------------------------------------------- -->
   <aside>
-      <ul style='font:22px/2 "";'>
-          <li class="ui-border-b"><i class="ui-icon-history abc ">全部订单</i> <i class="ui-icon-next fr"></i> </li>
-          <li class="ui-border-b"><i class="ui-icon-like abc">我的优惠</i> <i class="ui-icon-next fr"></i> </li>
-          <li class="ui-border-b"><i class="ui-icon-wallet abc">我的红包</i>  <i class="ui-icon-next fr"></i> </li>
-          <li class="ui-border-b"><i class="ui-icon-scan abc">我的会员</i>  <i class="ui-icon-next fr"></i> </li>
-          <li class="ui-border-b"><i class="ui-icon-collect abc">我的收藏</i>  <i class="ui-icon-next fr"></i> </li>
-          <li class="ui-border-b" @click="shopcart"><i class="ui-icon-cart abc">我的购物</i>  <i class="ui-icon-next fr"></i> </li>
+      <ul style='font:12px/1.5 "";'>
+          <li class="ui-border"><i class="ui-icon-history abc " style="font:20px/2 '';"><b style="font:16px/2 '';padding-left:5px;">全部订单</b></i>  </li>
+          <li class="ui-border"><i class="ui-icon-like abc"   style="font:20px/2 '';">  <b style="font:16px/2 '';padding-left:5px;">我的优惠</b></i>  </li>
+          <li class="ui-border"><i class="ui-icon-wallet abc"  style="font:20px/2 '';"> <b style="font:16px/2 '';padding-left:5px;">我的红包</b></i>  </li>
+          <li class="ui-border"><i class="ui-icon-scan abc"  style="font:20px/2 '';">   <b style="font:16px/2 '';padding-left:5px;">我的会员</b></i>  </li>
+          <li class="ui-border"><i class="ui-icon-collect abc"  style="font:20px/2 '';"><b style="font:16px/2 '';padding-left:5px;">我的收藏</b></i>  </li>
+          <li class="ui-border" @click="shopcart"><i class="ui-icon-cart abc"  style="font:20px/2 '';"><b style="font:16px/2 '';padding-left:5px;">我的购物</b></i> </li>
       </ul>
   </aside>
 
@@ -108,9 +108,9 @@ export default {
   .top h5{font:16px/2 "";color:#fff;position: absolute;left:85px;top:20px;}
   .top h5 a{color:#fff}
   
-  .ui-border-b{text-align:left;color:rgb(137, 151, 137);width:100%;text-align:left;margin:20px 0;
-  display:flex;justify-content:space-between;   border-bottom:1px solid gray}
-  .abc{font:22px/2 "";}
+  .ui-border{text-align:left;color:rgb(137, 151, 137);width:100%;margin:10px 0;
+  display:flex;justify-content:space-between;}
+  /* .abc{font:12px/2 "";} */
 
   /* .fl1{font:18px/18px "";color:rgb(137, 151, 137);width:190px;text-align:left;margin:20px 0} */
 </style>

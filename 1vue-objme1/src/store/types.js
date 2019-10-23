@@ -1,4 +1,4 @@
-// export const VIEW_LOADING = 'VIEW_LOADING';
+export const VIEW_LOADING = 'VIEW_LOADING';
 
 // export const UPDATE_BANNER = 'UPDATE_BANNER';
 

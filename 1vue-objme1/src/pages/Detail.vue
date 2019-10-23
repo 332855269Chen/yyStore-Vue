@@ -43,7 +43,7 @@
       <img src='../assets/img/icon/detail-3.jpg' alt="" style="width:100%">
         
    
-<!-- <img v-for="img in imageList" v-lazy="img" style="width:100%"> -->
+<img v-for="img in imageList" v-lazy="img" style="width:100%" :key='img._id'>
  
 <!-- ---------------------------------------底部--------------------------------------------------------- -->
      <div class="footer" style='font:30px/2 "";'>
@@ -68,9 +68,6 @@
 
   import {mapState,mapActions,mapGetters} from 'vuex';
   import  {UPDATE_HOME}  from '../store/types'
-
-
-
 
   export default {
     data(){

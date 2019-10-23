@@ -1,7 +1,7 @@
 let state = {
    
     
-    // loading: false,
+    bLoading:false,
     head:false,
     foot:false,
 
@@ -23,6 +23,7 @@ let state = {
       // {id:1,title:'xxxx',des:'xxx',number:1}
       // {id:1,title:'xxxxx',des:'xxx',number:1}
     ],
+    goods:[]
 
 
 };

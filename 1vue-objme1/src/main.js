@@ -46,10 +46,10 @@ if(local){
 
 //按需引入，全局注册使用
 import {Swipe, SwipeItem,GoodsAction,GoodsActionIcon,GoodsActionButton,Card,Stepper,SwipeCell,Cell, CellGroup,Button,
-  SubmitBar,Checkbox, CheckboxGroup,Lazyload,NoticeBar} from 'vant';
+  SubmitBar,Checkbox, CheckboxGroup,Lazyload,NoticeBar,Loading } from 'vant';
 
 Vue.use(Swipe).use(SwipeItem) .use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton).use(Card).use(Stepper).use(Card).use(SwipeCell)
-.use(Cell).use(CellGroup).use(Button).use(SubmitBar).use(Checkbox).use(CheckboxGroup).use(Lazyload).use(NoticeBar)
+.use(Cell).use(CellGroup).use(Button).use(SubmitBar).use(Checkbox).use(CheckboxGroup).use(Lazyload).use(NoticeBar).use(Loading )
 
 new Vue({ 
   data:{

@@ -5,7 +5,7 @@
 <header class="ui-border-tb" style="padding-bottom:1px;" >
     <div class="ui-c-header clearfix">
             
-        <div class="fl ui-c-cartttt" styles="width:5%" style="display:flex;">
+        <div class="fl ui-c-cartttt"  style="display:flex;">
            <!-- 返回箭 -->
             <i class="ui-icon-return" @click="goback"></i>
               <h2 style='margin-left:130px;font:30px/40px "" ' >购物车</h2>
@@ -28,6 +28,8 @@
           <li class="ui-border-b"
              v-for="item of buycar"
              :key="item._id"
+            
+
             >
               
           
@@ -49,6 +51,7 @@
                   </div>          //单个商品 不同数量的 总价 {{item.price * item.number}}   --> 
                   
 
+<!-- //  <router-link  :to="{ name:'detail', params:{id:item._id}, query:{dataName:dataName} }">  -->
 
          <van-swipe-cell>
 
@@ -79,7 +82,10 @@
                 <!-- <van-button square type="primary" text="收藏"/> -->
               </template>
               
-         </van-swipe-cell>
+         </van-swipe-cell> 
+
+      <!-- //  </router-link> -->
+
             </li>
         </ul>
 
@@ -106,6 +112,9 @@
 
 import {mapGetters,mapActions} from 'vuex'
 export default {
+  
+    props:['listData','dataName'],
+
       data(){
         return {
          value:0,
@@ -157,7 +166,7 @@ export default {
   },
 
   // activated(){
-  //     console.log('car',this.$store.state.buycar[0].check)
+  //     // console.log('car',this.$store.state.buycar[0])
   //     // console.log('cptcheck',cptcheck)
   // }
 
@@ -171,9 +180,10 @@ export default {
 
   .ui-p-product{display: flex}
   .list{padding-bottom:100px;}
-  .list ul li a{display:flex;justify-content:space-between;}
+  .ui-border-b{margin-top:5px;}
+  /* .list ul li a{display:flex;justify-content:space-between;}
   .list ul li a img.info-img{display:block; width:106px;height:107px;margin-top:10px;}
-  .list ul li a .info{width:414px;font:12px/18px "";text-align: left;font-weight: 400;}
+  .list ul li a .info{width:414px;font:12px/18px "";text-align: left;font-weight: 400;} */
   .info > span {
     color: rgba(32, 35, 37, 0.6);
     display: block;

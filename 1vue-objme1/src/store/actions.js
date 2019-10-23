@@ -2,10 +2,10 @@ import * as types from './types';
 
 export default {
 
-//   [types.VIEW_LOADING]:({state,commit},payload)=>{
-//     //校验payload的类型
-//     commit(types.VIEW_LOADING,payload)
-//   },
+  [types.VIEW_LOADING]:({state,commit},payload)=>{
+    //校验payload的类型
+    commit(types.VIEW_LOADING,payload)
+  },
 
 
 
@@ -70,6 +70,7 @@ export default {
       res=>{
         commit(types.CHECK_USER,res.data);//同步1
         localStorage.setItem('user',JSON.stringify(res.data))//同步2
+        // console.log(res.data)
         return {
           mess:res.data.msg,
           err:res.data.err
@@ -81,7 +82,43 @@ export default {
     //car
 
   addItem:({commit,state},payload)=>{ 
-  
+    // console.log(payload,state)
+    
+    //添到数据库   解决了新增number是需要点击之后才会有的，所以一开始拿不到，可以用延时器 ，等数据拿到 异步获取
+    // setTimeout(() => {
+
+      // 兜库
+      axios({
+        url:'/api/follow',
+        params:{_page:1,_limit:100}
+        
+      }).then(
+        res=>{
+           let arr2 = []
+           let arr1 = []
+           res.data.data.forEach((item,index,array)=>{
+             arr2.push(array[index].userDetail.goodsid)
+             arr1.push(array[index].userDetail.number)
+        })
+        if( arr2.indexOf(payload._id) == -1 ){   //indexOf == -1说明不存在
+          axios({
+            url:`/api/add/?num=${payload.number}&_id=${payload._id}`
+          }).then(
+            res=>{ 
+               console.log("不存在，可插入")
+            }
+          )
+        }else{
+              
+        }
+         
+        
+     }
+    )
+     
+
+
+
     let arr=[...state.buycar];
 
     let find=false;
@@ -91,6 +128,7 @@ export default {
         item.number++;//数量递增
 
         find=true;
+        
       }
     });
     if(!find) {
